@@ -39,7 +39,7 @@ parser.add_argument("--algo",type=str,default="ddpg",required=True)
 #actor lr
 parser.add_argument("--actor_lr",type=float,default=actor_lr,required=True)
 #critic lr
-parser.add_argument("--critice_lr",type=float,default=critic_lr,required=True)
+parser.add_argument("--critic_lr",type=float,default=critic_lr,required=True)
 #gamma
 parser.add_argument("--gamma",type=float,default=gamma,required=True)
 #tau
