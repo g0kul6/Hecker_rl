@@ -173,11 +173,13 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                     noise = (torch.rand_like(actions) * 0.2).clamp(-0.5,0.5)
                     next_action = (actor_target(next_states) + noise).clamp(-1,1)
                     # clipped double q learning
-                    target_q1,target_q2 = critic_target(next_states,next_action).squeeze(dim=1)
+                    target_q1,target_q2 = critic_target(next_states,next_action)
+                    target_q1,target_q2 = target_q1.squeeze(dim=1),target_q2.squeeze(dim=1)
                     target_q = rewards + gamma * (~dones) * torch.min(target_q1,target_q2)
                 
                 # critic update
-                q1,q2 = critic(states,actions).squeeze(dim=1)
+                q1,q2 = critic(states,actions)
+                q1,q2 = q1.squeeze(dim=1),q2.squeeze(dim=1)
                 critic_loss = F.mse_loss(q1,target_q) + F.mse_loss(q2,target_q)
                 critic_optimizer.zero_grad()
                 critic_loss.backward()
