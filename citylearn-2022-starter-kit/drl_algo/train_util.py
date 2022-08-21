@@ -207,8 +207,8 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
         total_steps = total_steps + 1   
         wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
         print("Episode:",i,"total_score:",score,"Building_Score_1:",sum(building_1),"Building_Score_2:",sum(building_2),"Building_Score_3:",sum(building_3),"Building_Score_4:",sum(building_4),"Building_Score_5:",sum(building_5))
-        torch.save(actor.state_dict(),"{}ddpg-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
-        torch.save(critic.state_dict(),"{}ddpg-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
+        torch.save(actor.state_dict(),"{}td3-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
+        torch.save(critic.state_dict(),"{}td3-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
 
 
 
