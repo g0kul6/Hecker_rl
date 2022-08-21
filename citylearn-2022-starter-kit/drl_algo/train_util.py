@@ -188,20 +188,21 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                     # freeze critic
                     for params in critic.parameters():
                         params.requires_grad = False
+                        
                     q1,q2 = critic(states,actor(states))
                     actor_loss = -1 * q1.mean()
                     actor_optimizer.zero_grad()
                     actor_loss.backward()
                     actor_optimizer.step()
 
-                # unfreeze critic
-                for params in critic.parameters():
-                    params.requires_grad = True
+                    # unfreeze critic
+                    for params in critic.parameters():
+                        params.requires_grad = True
 
-                # soft target update by polyak average
-                for param_critic,target_param_critic,param_actor,target_param_actor in zip(critic.parameters(),critic_target.parameters(),actor.parameters(),actor_target.parameters()):
-                    target_param_critic.data.copy_(tau*param_critic.data + (1-tau)*target_param_critic.data)
-                    target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
+                    # soft target update by polyak average
+                    for param_critic,target_param_critic,param_actor,target_param_actor in zip(critic.parameters(),critic_target.parameters(),actor.parameters(),actor_target.parameters()):
+                        target_param_critic.data.copy_(tau*param_critic.data + (1-tau)*target_param_critic.data)
+                        target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
         
         total_steps = total_steps + 1   
         wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
