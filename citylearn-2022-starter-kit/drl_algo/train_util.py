@@ -178,7 +178,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                 
                 # critic update
                 q1,q2 = critic(states,actions).squeeze(dim=1)
-                critic_loss = F.mse_loss(q1,target_q1) + F.mse_loss(q2,target_q2)
+                critic_loss = F.mse_loss(q1,target_q) + F.mse_loss(q2,target_q)
                 critic_optimizer.zero_grad()
                 critic_loss.backward()
                 critic_optimizer.step()
@@ -188,7 +188,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                     # freeze critic
                     for params in critic.parameters():
                         params.requires_grad = False
-                        
+
                     q1,q2 = critic(states,actor(states))
                     actor_loss = -1 * q1.mean()
                     actor_optimizer.zero_grad()
