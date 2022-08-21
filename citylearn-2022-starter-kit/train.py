@@ -1,6 +1,6 @@
 # file which gets different hyperparameters to train the models 
 
-from drl_algo.train_util import train_ddpg_mlp
+from drl_algo.train_util import train_ddpg_mlp,train_td3_mlp
 from drl_algo.config import actor_lr,critic_lr,gamma,tau,batch_size
 from citylearn.citylearn import CityLearnEnv
 
@@ -52,8 +52,9 @@ args = parser.parse_args()
 
 if args.algo == "ddpg":
     train_ddpg_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
-                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,update_freq=20,gamma=args.gamma)
+                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,update_freq=7,gamma=args.gamma)
 elif args.algo == "td3":
-    pass
+    train_td3_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,gamma=args.gamma,policy_freq=2)
 elif args.algo == "sac":
     pass

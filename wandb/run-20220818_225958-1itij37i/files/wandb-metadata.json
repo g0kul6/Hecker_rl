@@ -1,0 +1,39 @@
+{
+    "os": "Linux-5.17.5-76051705-generic-x86_64-with-glibc2.17",
+    "python": "3.8.13",
+    "heartbeatAt": "2022-08-18T17:30:19.728203",
+    "startedAt": "2022-08-18T17:29:58.570732",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--algo",
+        "ddpg",
+        "--actor_lr",
+        "1e-4",
+        "--critic_lr",
+        "1e-4",
+        "--gamma",
+        "0.99",
+        "--tau",
+        "0.05",
+        "--device",
+        "cuda",
+        "--epochs",
+        "1000"
+    ],
+    "state": "running",
+    "program": "citylearn-2022-starter-kit/train.py",
+    "codePath": "citylearn-2022-starter-kit/train.py",
+    "git": {
+        "remote": "https://github.com/g0kul6/Hecker_rl.git",
+        "commit": "c8593084ea18a1d449a1d20b02c0219cfa208fb0"
+    },
+    "email": null,
+    "root": "/home/g0kul6/g0kul6/cityclean-rl",
+    "host": "pop-os",
+    "username": "g0kul6",
+    "executable": "/home/g0kul6/miniconda3/envs/cityclean/bin/python"
+}

@@ -26,14 +26,27 @@ class DDPG_Memory(object):
     def __len__(self):
         return len(self.memory)
     
-
+Transition_TD3 = namedtuple('Transition', ('state', 'next_state', 'action', 'reward', 'done'))
 class TD3_Memory(object):
-    def __init__(self):
+    def __init__(self,capacity):
         """
         Replay buffer for TD3
-        INPUT  : 
-        OUTPUT : 
+        INPUT  : state,next_state,action,reward and done
+        OUTPUT : batch of off-polocy experience
         """
+        self.memory = deque(maxlen=capacity)
+        self.capacity = capacity
+
+    def push(self, state, next_state, action, reward, done):
+        self.memory.append(Transition_TD3(state, next_state, action, reward, done))
+
+    def sample(self, batch_size):
+        transitions = random.sample(self.memory, batch_size)
+        batch = Transition_TD3(*zip(*transitions))
+        return batch
+
+    def __len__(self):
+        return len(self.memory)
 
 class SAC_Memory(object):
     def __init__(self):
