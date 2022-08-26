@@ -10,6 +10,8 @@ use this script for orchestrating the evaluations.
 
 from agents.orderenforcingwrapper import OrderEnforcingAgent
 from citylearn.citylearn import CityLearnEnv
+from drl_algo.models import DDPG_MLP_ACTOR,DDPG_MLP_CRITIC,TD3_MLP_ACTOR,TD3_MLP_CRITIC
+import torch
 
 class Constants:
     episodes = 3
@@ -36,20 +38,24 @@ def env_reset(env):
                 "observation": observations }
     return obs_dict
 
+
 def evaluate():
     print("Starting local evaluation")
-    
     env = CityLearnEnv(schema=Constants.schema_path)
-    agent = OrderEnforcingAgent()
+    # agent = OrderEnforcingAgent()
+    actor = DDPG_MLP_ACTOR(env.observation_space[0].shape[0]*5,env.action_space[0].shape[0]*5,hidden_dim=120)
+    actor.load_state_dict(torch.load("/home/g0kul6/g0kul6/cityclean-rl/checkpoint/ddpg-actor_mlp_actor-lr_0.0003_critic-lr_0.0003_gamma_0.99_tau_0.05.pth"))
 
     obs_dict = env_reset(env)
 
     agent_time_elapsed = 0
 
     step_start = time.perf_counter()
-    actions = agent.register_reset(obs_dict)
+    # actions = agent.register_reset(obs_dict)
     agent_time_elapsed += time.perf_counter()- step_start
-
+    observations = obs_dict["observation"]
+    action = actor(torch.flatten(torch.FloatTensor(observations)))
+    action = [([i]) for i in action]
     episodes_completed = 0
     num_steps = 0
     interrupted = False
@@ -60,8 +66,7 @@ def evaluate():
             ### This is only a reference script provided to allow you 
             ### to do local evaluation. The evaluator **DOES NOT** 
             ### use this script for orchestrating the evaluations. 
-
-            observations, _, done, _ = env.step(actions)
+            observations, _, done, _ = env.step(action)
             if done:
                 episodes_completed += 1
                 metrics_t = env.evaluate()
@@ -72,13 +77,15 @@ def evaluate():
                 print(f"Episode complete: {episodes_completed} | Latest episode metrics: {metrics}", )
 
                 obs_dict = env_reset(env)
-
+                observations = obs_dict["observation"]
                 step_start = time.perf_counter()
-                actions = agent.register_reset(obs_dict)
+                action = actor(torch.flatten(torch.FloatTensor(observations)))
+                action = [([i]) for i in action]
                 agent_time_elapsed += time.perf_counter()- step_start
             else:
                 step_start = time.perf_counter()
-                actions = agent.compute_action(observations)
+                action = action = actor(torch.flatten(torch.FloatTensor(observations)))
+                action = [([i]) for i in action]
                 agent_time_elapsed += time.perf_counter()- step_start
             
             num_steps += 1

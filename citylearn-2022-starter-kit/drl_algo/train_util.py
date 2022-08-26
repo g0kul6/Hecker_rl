@@ -16,7 +16,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,update_freq,batch_size,device):
-    wandb.init(project="CITYCLEAN_RL",name="ddpg_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+    # wandb.init(project="CITYCLEAN_RL",name="ddpg_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
     #actor and actor target
     actor = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
     actor_target = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
@@ -50,9 +50,11 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
             else:
                 #add gaussian noise 
                 action = actor(torch.flatten(torch.FloatTensor(state).to(device=device)))
-                action = action.cpu().detach().numpy() + np.random.normal(0,0.1,size=action_dim).clip(-1,1)
+                action = (action.cpu().detach().numpy() + np.random.normal(scale=0.3,size=action_dim)).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
+            if steps == 200:
+                done = True
             steps = steps + 1
             building_1.append(reward[0])
             building_2.append(reward[1])
@@ -72,6 +74,7 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
                     actions = torch.stack(list(samples.action)).to(device=device)
                     dones = torch.stack(list(samples.done)).to(device=device)
                     rewards = torch.stack(list(samples.reward)).to(device=device)
+                    rewards = (rewards - rewards.mean())/(rewards.std()+1e+5)
                     # Target Q
                     with torch.no_grad():
                         Q_ = critic_target(next_states,actor_target(next_states)).squeeze(dim=1)
@@ -103,14 +106,14 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
                         target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
 
         total_steps = total_steps + 1   
-        wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
+        # wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
         print("Episode:",i,"total_score:",score,"Building_Score_1:",sum(building_1),"Building_Score_2:",sum(building_2),"Building_Score_3:",sum(building_3),"Building_Score_4:",sum(building_4),"Building_Score_5:",sum(building_5))
         torch.save(actor.state_dict(),"{}ddpg-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
         torch.save(critic.state_dict(),"{}ddpg-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
         
 
 def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,batch_size,device,policy_freq):
-    wandb.init(project="CITYCLEAN_RL",name="td3_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+    # wandb.init(project="CITYCLEAN_RL",name="td3_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
     #actor and actor target
     actor = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
     actor_target = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
@@ -145,9 +148,11 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
             else:
                 #add gaussian noise 
                 action = actor(torch.flatten(torch.FloatTensor(state).to(device=device)))
-                action = action.cpu().detach().numpy() + np.random.normal(0,0.1,size=action_dim).clip(-1,1)
+                action = (action.cpu().detach().numpy() + np.random.normal(scale=0.3,size=action_dim)).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
+            if steps == 200:
+                done = True
             steps = steps + 1
             building_1.append(reward[0])
             building_2.append(reward[1])
@@ -167,6 +172,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                 actions = torch.stack(list(samples.action)).to(device=device)
                 dones = torch.stack(list(samples.done)).to(device=device)
                 rewards = torch.stack(list(samples.reward)).to(device=device)
+                rewards = (rewards - rewards.mean())/(rewards.std()+1e+5)
                 # Target Q
                 with torch.no_grad():
                     # target policy smoothing 
@@ -207,7 +213,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                         target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
         
         total_steps = total_steps + 1   
-        wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
+        # wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
         print("Episode:",i,"total_score:",score,"Building_Score_1:",sum(building_1),"Building_Score_2:",sum(building_2),"Building_Score_3:",sum(building_3),"Building_Score_4:",sum(building_4),"Building_Score_5:",sum(building_5))
         torch.save(actor.state_dict(),"{}td3-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
         torch.save(critic.state_dict(),"{}td3-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))

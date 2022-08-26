@@ -1,6 +1,6 @@
 
 from os import stat
-from drl_algo.models import DDPG_MLP_ACTOR,DDPG_MLP_CRITIC
+from drl_algo.models import DDPG_MLP_ACTOR,DDPG_MLP_CRITIC,TD3_MLP_ACTOR,TD3_MLP_CRITIC
 import torch
 from citylearn.citylearn import CityLearnEnv
 
@@ -31,8 +31,8 @@ def env_reset(env):
     return obs_dict
 
 env = CityLearnEnv(schema=Constants.schema_path)
-actor = DDPG_MLP_ACTOR(env.observation_space[0].shape[0]*5,env.action_space[0].shape[0]*5,hidden_dim=120)
-actor.load_state_dict(torch.load("/home/g0kul6/g0kul6/cityclean-rl/checkpoint/ddpg-actor_mlp_actor-lr_0.0003_critic-lr_0.0003_gamma_0.99_tau_0.05.pth"))
+actor = TD3_MLP_ACTOR(env.observation_space[0].shape[0]*5,env.action_space[0].shape[0]*5,hidden_dim=120)
+actor.load_state_dict(torch.load("/home/g0kul6/g0kul6/cityclean-rl/checkpoint/td3-actor_mlp_actor-lr_0.0003_critic-lr_0.0003_gamma_0.99_tau_0.05.pth"))
 state = env.reset()
 score = 0
 step = 0
@@ -43,7 +43,9 @@ while not done:
     next_state, reward, done, _ = env.step(action)
     step = step + 1
     score = score + reward
-    print("Step:",step,"Score:",score)
-metrics_t = env.evaluate()
-metrics = {"price_cost": metrics_t[0], "emmision_cost": metrics_t[1]}
-print(metrics)
+    metrics_t = env.evaluate()
+    metrics = {"price_cost": metrics_t[0], "emmision_cost": metrics_t[1]}
+    if step%100 == 0:
+        print(metrics)
+        print("Step:",step,"Score:",sum(score))
+        print(action)
