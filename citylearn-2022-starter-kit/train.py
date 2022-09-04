@@ -6,7 +6,7 @@ from citylearn.citylearn import CityLearnEnv
 
 class Constants:
     episodes = 3
-    schema_path = '/home/g0kul6/g0kul6/cityclean-rl/citylearn-2022-starter-kit/data/citylearn_challenge_2022_phase_1/schema.json'
+    schema_path = 'citylearn-2022-starter-kit/data/citylearn_challenge_2022_phase_1/schema.json'
 
 def action_space_to_dict(aspace):
     """ Only for box space """
