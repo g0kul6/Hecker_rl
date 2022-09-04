@@ -1,0 +1,24 @@
+program: train.py 
+method: grid
+metric:
+  goal: maximize
+  name: score
+parameters:
+  algo:
+    values: ["ddpg","td3"]
+  device:
+    values: ["cuda"]
+  epochs:
+    values: [1000]
+  actor_lr:
+    values: [0.0001,0.0002,0.0003]
+  critic_lr:
+    values: [0.0001,0.0002,0.0003]
+  tau:
+    values: [0.01,0.02,0.03,0.04,0.05]
+  gamma:
+    values: [0.99]
+  batch_size:
+    values: [256]
+  
+

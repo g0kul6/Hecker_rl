@@ -1,0 +1,13 @@
+2022-09-04 10:22:42 INFO Running runs: []
+2022-09-04 10:22:51 INFO Agent received command: run
+2022-09-04 10:22:51 INFO Agent starting run with config:
+	actor_lr: 0.0001
+	algo: ddpg
+	batch_size: 256
+	critic_lr: 0.0001
+	device: cuda
+	epochs: 1000
+	gamma: 0.99
+	tau: 0.01
+2022-09-04 10:22:51 INFO About to run command: /usr/bin/env python citylearn-2022-starter-kit/train.py --actor_lr=0.0001 --algo=ddpg --batch_size=256 --critic_lr=0.0001 --device=cuda --epochs=1000 --gamma=0.99 --tau=0.01
+2022-09-04 10:22:56 INFO Running runs: ['qxmaxny0']

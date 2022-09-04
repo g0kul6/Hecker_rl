@@ -1,4 +1,5 @@
 # The training code for DDPG,TD3 and SAC
+from distutils.command.config import config
 from importlib.resources import path
 import os
 import sys
@@ -15,21 +16,22 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
-def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,update_freq,batch_size,device):
-    # wandb.init(project="CITYCLEAN_RL",name="ddpg_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+def train_ddpg_mlp(env,hyperparameters,state_dim,action_dim,episodes,random_steps,update_freq,device):
+    wandb.init(project="CITYCLEAN_RL",config=hyperparameters,entity="cleancity_challenge_rl")
+    config = wandb.config
     #actor and actor target
-    actor = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
-    actor_target = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
+    actor = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=70).to(device=device)
+    actor_target = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=70).to(device=device)
     actor_target.load_state_dict(actor.state_dict())
     #critic and critic target
-    critic = DDPG_MLP_CRITIC(state_dim,action_dim,hidden_dim=120).to(device=device)
-    critic_target = DDPG_MLP_CRITIC(state_dim,action_dim,hidden_dim=120).to(device=device)
+    critic = DDPG_MLP_CRITIC(state_dim,action_dim,hidden_dim=70).to(device=device)
+    critic_target = DDPG_MLP_CRITIC(state_dim,action_dim,hidden_dim=70).to(device=device)
     critic_target.load_state_dict(critic.state_dict())
     #actor and critic optimizers
-    actor_optimizer = optim.Adam(actor.parameters(),lr=actor_lr)
-    critic_optimizer = torch.optim.Adam(critic.parameters(),lr=critic_lr)
+    actor_optimizer = optim.Adam(actor.parameters(),lr=config.actor_lr)
+    critic_optimizer = torch.optim.Adam(critic.parameters(),lr=config.critic_lr)
     #memory
-    memory = DDPG_Memory(capacity=10000)
+    memory = DDPG_Memory(capacity=1000)
     # episodes
     total_steps = 0
     actor_loss = 0
@@ -53,7 +55,7 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
                 action = (action.cpu().detach().numpy() + np.random.normal(scale=0.3,size=action_dim)).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
-            if steps == 200:
+            if steps == 500:
                 done = True
             steps = steps + 1
             building_1.append(reward[0])
@@ -68,17 +70,17 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
             if total_steps >= random_steps and total_steps%update_freq == 0:
                 for _ in range(update_freq):
                     #learn
-                    samples = memory.sample(batch_size=batch_size)
+                    samples = memory.sample(batch_size=config.batch_size)
                     next_states = torch.stack(list(samples.next_state)).to(device=device)
                     states = torch.stack(list(samples.state)).to(device=device)
                     actions = torch.stack(list(samples.action)).to(device=device)
                     dones = torch.stack(list(samples.done)).to(device=device)
                     rewards = torch.stack(list(samples.reward)).to(device=device)
-                    rewards = (rewards - rewards.mean())/(rewards.std()+1e+5)
+                    rewards = (rewards - rewards.mean())/(rewards.std())
                     # Target Q
                     with torch.no_grad():
                         Q_ = critic_target(next_states,actor_target(next_states)).squeeze(dim=1)
-                        Q_target = rewards + gamma * (~dones) * Q_
+                        Q_target = rewards + config.gamma * (~dones) * Q_
                     #critic update
                     Q_Value = critic(states,actions).squeeze(dim=1)
                     critic_loss = F.mse_loss(Q_target,Q_Value)
@@ -102,31 +104,32 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
 
                     # soft target update by polyak average
                     for param_critic,target_param_critic,param_actor,target_param_actor in zip(critic.parameters(),critic_target.parameters(),actor.parameters(),actor_target.parameters()):
-                        target_param_critic.data.copy_(tau*param_critic.data + (1-tau)*target_param_critic.data)
-                        target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
+                        target_param_critic.data.copy_(config.tau*param_critic.data + (1-config.tau)*target_param_critic.data)
+                        target_param_actor.data.copy_(config.tau*param_actor.data + (1-config.tau)*target_param_actor.data)
 
         total_steps = total_steps + 1   
-        # wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
+        wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
         print("Episode:",i,"total_score:",score,"Building_Score_1:",sum(building_1),"Building_Score_2:",sum(building_2),"Building_Score_3:",sum(building_3),"Building_Score_4:",sum(building_4),"Building_Score_5:",sum(building_5))
-        torch.save(actor.state_dict(),"{}ddpg-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
-        torch.save(critic.state_dict(),"{}ddpg-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
+        torch.save(actor.state_dict(),"{}ddpg-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,config.actor_lr,config.critic_lr,config.gamma,config.tau))
+        torch.save(critic.state_dict(),"{}ddpg-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,config.actor_lr,config.critic_lr,config.gamma,config.tau))
         
 
-def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,batch_size,device,policy_freq):
-    # wandb.init(project="CITYCLEAN_RL",name="td3_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+def train_td3_mlp(env,hyperparameters,state_dim,action_dim,episodes,random_steps,device,policy_freq):
+    wandb.init(project="CITYCLEAN_RL",config=hyperparameters,entity="cleancity_challenge_rl")
+    config = wandb.config
     #actor and actor target
-    actor = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
-    actor_target = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
+    actor = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=70).to(device=device)
+    actor_target = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=70).to(device=device)
     actor_target.load_state_dict(actor.state_dict())
     #critic and critic target
-    critic = TD3_MLP_CRITIC(state_dim,action_dim,hidden_dim=120).to(device=device)
-    critic_target = TD3_MLP_CRITIC(state_dim,action_dim,hidden_dim=120).to(device=device)
+    critic = TD3_MLP_CRITIC(state_dim,action_dim,hidden_dim=70).to(device=device)
+    critic_target = TD3_MLP_CRITIC(state_dim,action_dim,hidden_dim=70).to(device=device)
     critic_target.load_state_dict(critic.state_dict())
     #actor and critic optimizers
-    actor_optimizer = optim.Adam(actor.parameters(),lr=actor_lr)
-    critic_optimizer = torch.optim.Adam(critic.parameters(),lr=critic_lr)
+    actor_optimizer = optim.Adam(actor.parameters(),lr=config.actor_lr)
+    critic_optimizer = torch.optim.Adam(critic.parameters(),lr=config.critic_lr)
     #memory
-    memory = TD3_Memory(capacity=10000)
+    memory = TD3_Memory(capacity=1000)
     # episodes
     total_steps = 0
     actor_loss = 0
@@ -151,7 +154,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                 action = (action.cpu().detach().numpy() + np.random.normal(scale=0.3,size=action_dim)).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
-            if steps == 200:
+            if steps == 500:
                 done = True
             steps = steps + 1
             building_1.append(reward[0])
@@ -166,13 +169,13 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
             if total_steps >= random_steps:
                 actor_pointer = actor_pointer + 1
                 #learn
-                samples = memory.sample(batch_size=batch_size)
+                samples = memory.sample(batch_size=config.batch_size)
                 next_states = torch.stack(list(samples.next_state)).to(device=device)
                 states = torch.stack(list(samples.state)).to(device=device)
                 actions = torch.stack(list(samples.action)).to(device=device)
                 dones = torch.stack(list(samples.done)).to(device=device)
                 rewards = torch.stack(list(samples.reward)).to(device=device)
-                rewards = (rewards - rewards.mean())/(rewards.std()+1e+5)
+                rewards = (rewards - rewards.mean())/(rewards.std())
                 # Target Q
                 with torch.no_grad():
                     # target policy smoothing 
@@ -181,7 +184,7 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                     # clipped double q learning
                     target_q1,target_q2 = critic_target(next_states,next_action)
                     target_q1,target_q2 = target_q1.squeeze(dim=1),target_q2.squeeze(dim=1)
-                    target_q = rewards + gamma * (~dones) * torch.min(target_q1,target_q2)
+                    target_q = rewards + config.gamma * (~dones) * torch.min(target_q1,target_q2)
                 
                 # critic update
                 q1,q2 = critic(states,actions)
@@ -209,14 +212,14 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
 
                     # soft target update by polyak average
                     for param_critic,target_param_critic,param_actor,target_param_actor in zip(critic.parameters(),critic_target.parameters(),actor.parameters(),actor_target.parameters()):
-                        target_param_critic.data.copy_(tau*param_critic.data + (1-tau)*target_param_critic.data)
-                        target_param_actor.data.copy_(tau*param_actor.data + (1-tau)*target_param_actor.data)
+                        target_param_critic.data.copy_(config.tau*param_critic.data + (1-config.tau)*target_param_critic.data)
+                        target_param_actor.data.copy_(config.tau*param_actor.data + (1-config.tau)*target_param_actor.data)
         
         total_steps = total_steps + 1   
-        # wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
+        wandb.log({"score":score,"actor_loss":actor_loss,"critic_loss":critic_loss,"Building_Score_1":sum(building_1),"Building_Score_2":sum(building_2),"Building_Score_3":sum(building_3),"Building_Score_4":sum(building_4),"Building_Score_5":sum(building_5)})
         print("Episode:",i,"total_score:",score,"Building_Score_1:",sum(building_1),"Building_Score_2:",sum(building_2),"Building_Score_3:",sum(building_3),"Building_Score_4:",sum(building_4),"Building_Score_5:",sum(building_5))
-        torch.save(actor.state_dict(),"{}td3-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
-        torch.save(critic.state_dict(),"{}td3-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
+        torch.save(actor.state_dict(),"{}td3-actor_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,config.actor_lr,config.critic_lr,config.gamma,config.tau))
+        torch.save(critic.state_dict(),"{}td3-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,config.actor_lr,config.critic_lr,config.gamma,config.tau))
 
 
 
