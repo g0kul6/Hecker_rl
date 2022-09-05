@@ -1,0 +1,10 @@
+2022-08-18 23:09:58,117 INFO    StreamThr :19818 [internal.py:wandb_internal():90] W&B internal server running at pid: 19818, started at: 2022-08-18 23:09:58.116724
+2022-08-18 23:09:58,118 DEBUG   HandlerThread:19818 [handler.py:handle_request():141] handle_request: status
+2022-08-18 23:09:58,119 DEBUG   SenderThread:19818 [sender.py:send_request():316] send_request: status
+2022-08-18 23:09:58,119 DEBUG   SenderThread:19818 [sender.py:send():302] send: header
+2022-08-18 23:09:58,119 INFO    WriterThread:19818 [datastore.py:open_for_write():75] open: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220818_230958-1dj5mdog/run-1dj5mdog.wandb
+2022-08-18 23:09:58,120 DEBUG   SenderThread:19818 [sender.py:send():302] send: run
+2022-08-18 23:10:05,281 INFO    SenderThread:19818 [dir_watcher.py:__init__():216] watching files in: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220818_230958-1dj5mdog/files
+2022-08-18 23:10:05,281 INFO    SenderThread:19818 [sender.py:_start_run_threads():913] run started: 1dj5mdog with start time 1660844398.11407
+2022-08-19 07:18:06,718 INFO    MainThread:19818 [internal.py:handle_exit():80] Internal process exited
+2022-08-19 07:18:06,719 WARNING MsgRouterThr:19818 [router.py:message_loop():73] EOFError seen in message_loop

@@ -1,0 +1,27 @@
+2022-09-05 02:03:08,394 INFO    MainThread:219579 [wandb_setup.py:_flush():76] Configure stats pid to 219579
+2022-09-05 02:03:08,395 INFO    MainThread:219579 [wandb_setup.py:_flush():76] Loading settings from /home/frozenwolf/.config/wandb/settings
+2022-09-05 02:03:08,395 INFO    MainThread:219579 [wandb_setup.py:_flush():76] Loading settings from wandb/settings
+2022-09-05 02:03:08,396 INFO    MainThread:219579 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_require_service': 'True', 'entity': 'cleancity_challenge_rl', 'project': 'CITYCLEAN_RL', 'sweep_id': 'kqgwa8r0', 'root_dir': '/home/frozenwolf/Desktop/neurIPS/Hecker_rl', 'run_id': 'ov2y8ie8', 'sweep_param_path': '/home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/sweep-kqgwa8r0/config-ov2y8ie8.yaml'}
+2022-09-05 02:03:08,396 INFO    MainThread:219579 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'citylearn-2022-starter-kit/train.py', 'program': '/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/train.py'}
+2022-09-05 02:03:08,396 INFO    MainThread:219579 [wandb_init.py:_log_setup():461] Logging user logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220905_020308-ov2y8ie8/logs/debug.log
+2022-09-05 02:03:08,397 INFO    MainThread:219579 [wandb_init.py:_log_setup():462] Logging internal logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220905_020308-ov2y8ie8/logs/debug-internal.log
+2022-09-05 02:03:08,397 INFO    MainThread:219579 [wandb_init.py:init():495] calling init triggers
+2022-09-05 02:03:08,398 INFO    MainThread:219579 [wandb_init.py:init():498] wandb.init called with sweep_config: {'actor_lr': 0.0001, 'algo': 'ddpg', 'batch_size': 256, 'critic_lr': 0.0003, 'device': 'cuda', 'epochs': 1000, 'gamma': 0.99, 'tau': 0.03}
+config: {'algo': 'ddpg', 'actor_lr': 0.0001, 'critic_lr': 0.0003, 'gamma': 0.99, 'tau': 0.03, 'batch_size': 256.0, 'device': 'cuda', 'epochs': 1000}
+2022-09-05 02:03:08,398 INFO    MainThread:219579 [wandb_init.py:init():548] starting backend
+2022-09-05 02:03:08,398 INFO    MainThread:219579 [wandb_init.py:init():552] setting up manager
+2022-09-05 02:03:08,428 INFO    MainThread:219579 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2022-09-05 02:03:08,461 INFO    MainThread:219579 [wandb_init.py:init():558] backend started and connected
+2022-09-05 02:03:08,492 INFO    MainThread:219579 [wandb_run.py:_config_callback():1152] config_cb None None {'actor_lr': 0.0001, 'algo': 'ddpg', 'batch_size': 256, 'critic_lr': 0.0003, 'device': 'cuda', 'epochs': 1000, 'gamma': 0.99, 'tau': 0.03}
+2022-09-05 02:03:08,495 INFO    MainThread:219579 [wandb_init.py:init():636] updated telemetry
+2022-09-05 02:03:08,525 INFO    MainThread:219579 [wandb_init.py:init():667] communicating run to backend with 30 second timeout
+2022-09-05 02:03:10,064 INFO    MainThread:219579 [wandb_run.py:_on_init():1982] communicating current version
+2022-09-05 02:03:10,614 INFO    MainThread:219579 [wandb_run.py:_on_init():1986] got version response upgrade_message: "wandb version 0.13.2 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2022-09-05 02:03:10,615 INFO    MainThread:219579 [wandb_init.py:init():700] starting run threads in backend
+2022-09-05 02:03:15,706 INFO    MainThread:219579 [wandb_run.py:_console_start():1962] atexit reg
+2022-09-05 02:03:15,708 INFO    MainThread:219579 [wandb_run.py:_redirect():1820] redirect: SettingsConsole.WRAP_RAW
+2022-09-05 02:03:15,709 INFO    MainThread:219579 [wandb_run.py:_redirect():1885] Wrapping output streams.
+2022-09-05 02:03:15,709 INFO    MainThread:219579 [wandb_run.py:_redirect():1907] Redirects installed.
+2022-09-05 02:03:15,711 INFO    MainThread:219579 [wandb_init.py:init():732] run started, returning control to user process
+2022-09-05 08:26:51,304 WARNING MsgRouterThr:219579 [router.py:message_loop():76] message_loop has been closed
