@@ -3,7 +3,8 @@
 from drl_algo.train_util import train_ddpg_mlp,train_td3_mlp
 from drl_algo.config import actor_lr,critic_lr,gamma,tau,batch_size
 from citylearn.citylearn import CityLearnEnv
-
+import torch
+import numpy as np
 class Constants:
     episodes = 3
     schema_path = 'citylearn-2022-starter-kit/data/citylearn_challenge_2022_phase_1/schema.json'
@@ -30,7 +31,7 @@ def env_reset(env):
                 "observation": observations }
     return obs_dict
 
-env = CityLearnEnv(schema=Constants.schema_path)
+
 
 import argparse
 parser = argparse.ArgumentParser()
@@ -48,13 +49,24 @@ parser.add_argument("--tau",type=float,default=tau,required=True)
 parser.add_argument("--device",type=str,default="cuda",required=True)
 #episodes
 parser.add_argument("--epochs",type=int,default=1000,required=True)
+parser.add_argument('--reward_key', type=int)
 args = parser.parse_args()
+
+import os
+os.mkdir("KEY"+str(args.reward_key))
+env = CityLearnEnv(schema=Constants.schema_path)
+os.rmdir("KEY"+str(args.reward_key))
+
+env.seed(123456)
+
+torch.manual_seed(123456)
+np.random.seed(123456)
 
 if args.algo == "ddpg":
     train_ddpg_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
-                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,update_freq=7,gamma=args.gamma)
+                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,update_freq=7,gamma=args.gamma, r=args.reward_key)
 elif args.algo == "td3":
     train_td3_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
-                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,gamma=args.gamma,policy_freq=2)
+                batch_size=batch_size,device=args.device,random_steps=50,episodes=args.epochs,gamma=args.gamma,policy_freq=2, r=args.reward_key)
 elif args.algo == "sac":
     pass

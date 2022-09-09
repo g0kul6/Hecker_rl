@@ -1,0 +1,182 @@
+2022-09-09 09:48:04,297 INFO    StreamThr :60630 [internal.py:wandb_internal():90] W&B internal server running at pid: 60630, started at: 2022-09-09 09:48:04.296729
+2022-09-09 09:48:04,298 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: status
+2022-09-09 09:48:04,299 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: status
+2022-09-09 09:48:04,299 DEBUG   SenderThread:60630 [sender.py:send():302] send: header
+2022-09-09 09:48:04,299 INFO    WriterThread:60630 [datastore.py:open_for_write():75] open: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/run-30o8kt3h.wandb
+2022-09-09 09:48:04,301 DEBUG   SenderThread:60630 [sender.py:send():302] send: run
+2022-09-09 09:48:05,366 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: check_version
+2022-09-09 09:48:05,368 INFO    SenderThread:60630 [dir_watcher.py:__init__():216] watching files in: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files
+2022-09-09 09:48:05,368 INFO    SenderThread:60630 [sender.py:_start_run_threads():913] run started: 30o8kt3h with start time 1662697084.296577
+2022-09-09 09:48:05,368 DEBUG   SenderThread:60630 [sender.py:send():302] send: summary
+2022-09-09 09:48:05,368 INFO    SenderThread:60630 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-09-09 09:48:05,369 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: check_version
+2022-09-09 09:48:05,577 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: run_start
+2022-09-09 09:48:05,587 DEBUG   HandlerThread:60630 [meta.py:__init__():35] meta init
+2022-09-09 09:48:05,588 DEBUG   HandlerThread:60630 [meta.py:__init__():50] meta init done
+2022-09-09 09:48:05,588 DEBUG   HandlerThread:60630 [meta.py:probe():216] probe
+2022-09-09 09:48:05,595 DEBUG   HandlerThread:60630 [meta.py:_setup_git():206] setup git
+2022-09-09 09:48:05,599 DEBUG   HandlerThread:60630 [meta.py:_setup_git():213] setup git done
+2022-09-09 09:48:05,599 DEBUG   HandlerThread:60630 [meta.py:_save_pip():54] save pip
+2022-09-09 09:48:05,599 DEBUG   HandlerThread:60630 [meta.py:_save_pip():68] save pip done
+2022-09-09 09:48:05,599 DEBUG   HandlerThread:60630 [meta.py:_save_conda():75] save conda
+2022-09-09 09:48:06,370 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_created():275] file/dir created: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/requirements.txt
+2022-09-09 09:48:06,370 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_created():275] file/dir created: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/conda-environment.yaml
+2022-09-09 09:48:06,370 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_created():275] file/dir created: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-summary.json
+2022-09-09 09:48:07,630 DEBUG   HandlerThread:60630 [meta.py:_save_conda():85] save conda done
+2022-09-09 09:48:07,631 DEBUG   HandlerThread:60630 [meta.py:probe():254] probe done
+2022-09-09 09:48:07,645 DEBUG   SenderThread:60630 [sender.py:send():302] send: files
+2022-09-09 09:48:07,645 INFO    SenderThread:60630 [sender.py:_save_file():1156] saving file wandb-metadata.json with policy now
+2022-09-09 09:48:07,649 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: stop_status
+2022-09-09 09:48:07,649 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: stop_status
+2022-09-09 09:48:08,369 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/conda-environment.yaml
+2022-09-09 09:48:08,369 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_created():275] file/dir created: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-metadata.json
+2022-09-09 09:48:08,373 DEBUG   SenderThread:60630 [sender.py:send():302] send: telemetry
+2022-09-09 09:48:09,189 INFO    Thread-16 :60630 [upload_job.py:push():138] Uploaded file /tmp/tmp23pjmnfmwandb/1ndepabk-wandb-metadata.json
+2022-09-09 09:48:14,051 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: partial_history
+2022-09-09 09:48:14,052 DEBUG   SenderThread:60630 [sender.py:send():302] send: history
+2022-09-09 09:48:14,052 DEBUG   SenderThread:60630 [sender.py:send():302] send: summary
+2022-09-09 09:48:14,054 INFO    SenderThread:60630 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-09-09 09:48:14,370 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-summary.json
+2022-09-09 09:48:14,370 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_created():275] file/dir created: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/output.log
+2022-09-09 09:48:16,371 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/output.log
+2022-09-09 09:48:18,228 DEBUG   SenderThread:60630 [sender.py:send():302] send: exit
+2022-09-09 09:48:18,228 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:18,228 INFO    SenderThread:60630 [sender.py:send_exit():438] handling exit code: 255
+2022-09-09 09:48:18,228 INFO    SenderThread:60630 [sender.py:send_exit():440] handling runtime: 12
+2022-09-09 09:48:18,229 INFO    SenderThread:60630 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-09-09 09:48:18,230 INFO    SenderThread:60630 [sender.py:send_exit():446] send defer
+2022-09-09 09:48:18,230 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:18,230 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,230 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 0
+2022-09-09 09:48:18,230 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,230 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 0
+2022-09-09 09:48:18,230 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 1
+2022-09-09 09:48:18,230 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,230 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 1
+2022-09-09 09:48:18,283 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,283 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 1
+2022-09-09 09:48:18,283 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 2
+2022-09-09 09:48:18,283 DEBUG   SenderThread:60630 [sender.py:send():302] send: stats
+2022-09-09 09:48:18,284 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,284 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 2
+2022-09-09 09:48:18,284 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,284 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 2
+2022-09-09 09:48:18,284 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 3
+2022-09-09 09:48:18,284 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,284 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 3
+2022-09-09 09:48:18,284 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,284 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 3
+2022-09-09 09:48:18,284 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 4
+2022-09-09 09:48:18,284 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,284 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 4
+2022-09-09 09:48:18,284 DEBUG   SenderThread:60630 [sender.py:send():302] send: summary
+2022-09-09 09:48:18,285 INFO    SenderThread:60630 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-09-09 09:48:18,285 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,285 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 4
+2022-09-09 09:48:18,285 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 5
+2022-09-09 09:48:18,285 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,285 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 5
+2022-09-09 09:48:18,285 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,285 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 5
+2022-09-09 09:48:18,331 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:18,372 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-summary.json
+2022-09-09 09:48:18,642 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 6
+2022-09-09 09:48:18,642 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:18,643 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:18,643 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 6
+2022-09-09 09:48:18,644 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:18,644 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 6
+2022-09-09 09:48:18,745 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:19,372 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/config.yaml
+2022-09-09 09:48:20,242 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 7
+2022-09-09 09:48:20,242 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,244 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:20,244 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 7
+2022-09-09 09:48:20,244 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:20,244 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 7
+2022-09-09 09:48:20,244 INFO    SenderThread:60630 [dir_watcher.py:finish():362] shutting down directory watcher
+2022-09-09 09:48:20,345 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,372 INFO    Thread-12 :60630 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/output.log
+2022-09-09 09:48:20,373 INFO    SenderThread:60630 [dir_watcher.py:finish():392] scan: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files
+2022-09-09 09:48:20,373 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/config.yaml config.yaml
+2022-09-09 09:48:20,373 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-summary.json wandb-summary.json
+2022-09-09 09:48:20,377 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/requirements.txt requirements.txt
+2022-09-09 09:48:20,379 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/conda-environment.yaml conda-environment.yaml
+2022-09-09 09:48:20,382 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-metadata.json wandb-metadata.json
+2022-09-09 09:48:20,382 INFO    SenderThread:60630 [dir_watcher.py:finish():406] scan save: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/output.log output.log
+2022-09-09 09:48:20,382 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 8
+2022-09-09 09:48:20,383 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,384 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:20,384 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 8
+2022-09-09 09:48:20,386 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:20,386 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 8
+2022-09-09 09:48:20,386 INFO    SenderThread:60630 [file_pusher.py:finish():171] shutting down file pusher
+2022-09-09 09:48:20,487 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,487 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,589 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,589 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,691 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,691 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,793 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,793 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,895 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,895 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:20,997 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:20,997 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,099 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,099 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,200 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,201 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,302 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,303 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,404 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,404 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,506 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,506 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,609 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,610 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,711 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,712 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,772 INFO    Thread-19 :60630 [upload_job.py:push():138] Uploaded file /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/requirements.txt
+2022-09-09 09:48:21,793 INFO    Thread-17 :60630 [upload_job.py:push():138] Uploaded file /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/config.yaml
+2022-09-09 09:48:21,801 INFO    Thread-20 :60630 [upload_job.py:push():138] Uploaded file /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/conda-environment.yaml
+2022-09-09 09:48:21,802 INFO    Thread-18 :60630 [upload_job.py:push():138] Uploaded file /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/wandb-summary.json
+2022-09-09 09:48:21,807 INFO    Thread-21 :60630 [upload_job.py:push():138] Uploaded file /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/files/output.log
+2022-09-09 09:48:21,813 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,814 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:21,916 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:21,916 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:22,008 INFO    Thread-11 (_thread_body):60630 [sender.py:transition_state():459] send defer: 9
+2022-09-09 09:48:22,008 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:22,008 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 9
+2022-09-09 09:48:22,008 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:22,008 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 9
+2022-09-09 09:48:22,018 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:22,283 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 10
+2022-09-09 09:48:22,283 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:22,283 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:22,284 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 10
+2022-09-09 09:48:22,284 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:22,284 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 10
+2022-09-09 09:48:22,284 INFO    SenderThread:60630 [sender.py:transition_state():459] send defer: 11
+2022-09-09 09:48:22,284 DEBUG   SenderThread:60630 [sender.py:send():302] send: final
+2022-09-09 09:48:22,285 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: defer
+2022-09-09 09:48:22,285 DEBUG   SenderThread:60630 [sender.py:send():302] send: footer
+2022-09-09 09:48:22,285 INFO    HandlerThread:60630 [handler.py:handle_request_defer():164] handle defer: 11
+2022-09-09 09:48:22,285 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: defer
+2022-09-09 09:48:22,285 INFO    SenderThread:60630 [sender.py:send_request_defer():455] handle sender defer: 11
+2022-09-09 09:48:22,385 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: poll_exit
+2022-09-09 09:48:22,385 DEBUG   SenderThread:60630 [sender.py:send_request():316] send_request: poll_exit
+2022-09-09 09:48:22,385 INFO    SenderThread:60630 [file_pusher.py:join():176] waiting for file pusher
+2022-09-09 09:48:23,538 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: sampled_history
+2022-09-09 09:48:23,540 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: get_summary
+2022-09-09 09:48:23,540 INFO    MainThread:60630 [wandb_run.py:_footer_history_summary_info():3305] rendering history
+2022-09-09 09:48:23,541 INFO    MainThread:60630 [wandb_run.py:_footer_history_summary_info():3337] rendering summary
+2022-09-09 09:48:23,541 INFO    MainThread:60630 [wandb_run.py:_footer_sync_info():3261] logging synced files
+2022-09-09 09:48:23,541 DEBUG   HandlerThread:60630 [handler.py:handle_request():141] handle_request: shutdown
+2022-09-09 09:48:23,541 INFO    HandlerThread:60630 [handler.py:finish():810] shutting down handler
+2022-09-09 09:48:24,285 INFO    WriterThread:60630 [datastore.py:close():279] close: /home/frozenwolf/Desktop/neurIPS/Hecker_rl/wandb/run-20220909_094804-30o8kt3h/run-30o8kt3h.wandb
+2022-09-09 09:48:24,436 INFO    SenderThread:60630 [sender.py:finish():1312] shutting down sender
+2022-09-09 09:48:24,436 INFO    SenderThread:60630 [file_pusher.py:finish():171] shutting down file pusher
+2022-09-09 09:48:24,436 INFO    SenderThread:60630 [file_pusher.py:join():176] waiting for file pusher
+2022-09-09 09:48:24,548 INFO    MainThread:60630 [internal.py:handle_exit():80] Internal process exited

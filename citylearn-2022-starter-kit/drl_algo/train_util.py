@@ -15,8 +15,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
-def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,update_freq,batch_size,device):
-    wandb.init(project="CITYCLEAN_RL",name="ddpg_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,update_freq,batch_size,device, r):
+    wandb.init(project="REWARD_SWEEP",name="reward_{}_ddpg_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(r, actor_lr,critic_lr,gamma,tau),entity="cleancity_challenge_rl")
     #actor and actor target
     actor = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
     actor_target = DDPG_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
@@ -109,8 +109,8 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
         torch.save(critic.state_dict(),"{}ddpg-critic_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}.pth".format(path_checkpoint,actor_lr,critic_lr,gamma,tau))
         
 
-def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,batch_size,device,policy_freq):
-    wandb.init(project="CITYCLEAN_RL",name="td3_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(actor_lr,critic_lr,gamma,tau))
+def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes,random_steps,batch_size,device,policy_freq,r):
+    wandb.init(project="REWARD_SWEEP",name="reward_{}_td3_mlp_actor-lr:{}_critic-lr:{}_gamma:{}_tau:{}".format(r,actor_lr,critic_lr,gamma,tau),entity="cleancity_challenge_rl")
     #actor and actor target
     actor = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)
     actor_target = TD3_MLP_ACTOR(state_dim,action_dim,hidden_dim=120).to(device=device)

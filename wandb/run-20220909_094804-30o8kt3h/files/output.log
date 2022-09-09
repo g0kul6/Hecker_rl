@@ -1,0 +1,14 @@
+
+Episode: 0 total_score: -25370.627679649013 Building_Score_1: -5497.906578612667 Building_Score_2: -5339.215343390306 Building_Score_3: -4555.531158954915 Building_Score_4: -5168.236821399881 Building_Score_5: -4809.737777291249
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/train.py", line 58, in <module>
+    train_ddpg_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/train_util.py", line 55, in train_ddpg_mlp
+    next_state, reward, done, _ = env.step(action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 458, in step
+    return self.observations, reward, self.done, self.get_info()
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 181, in observations
+    ]] if self.central_agent else [list(b.observations.values()) for b in self.buildings]
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 181, in <listcomp>
+    ]] if self.central_agent else [list(b.observations.values()) for b in self.buildings]
+KeyboardInterrupt

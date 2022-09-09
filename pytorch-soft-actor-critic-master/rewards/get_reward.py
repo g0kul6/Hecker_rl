@@ -1,9 +1,19 @@
 from typing import List
 import numpy as np
-
+import os
 ###########################################################################
 #####                Specify your reward function here                #####
 ###########################################################################
+
+
+def custom_rewards(x, which=0):
+    func = {0: lambda x: x*-1,
+            1: lambda x: 1/x,
+            2: lambda x: 1/(1 + np.exp(x)),
+            # 3: lambda x: np.asarray([-math.log(i) if i>0 else math.log(-i) for i in x])
+            }
+
+    return func[which](x)
 
 def get_reward(electricity_consumption: List[float], carbon_emission: List[float], electricity_price: List[float], agent_ids: List[int]) -> List[float]:
         """CityLearn Challenge user reward calculation.
@@ -30,7 +40,12 @@ def get_reward(electricity_consumption: List[float], carbon_emission: List[float
         # Replace with custom reward calculation
         carbon_emission = np.array(carbon_emission).clip(min=0)
         electricity_price = np.array(electricity_price).clip(min=0)
-        reward = (carbon_emission + electricity_price)*-1
+
+        key = os.listdir()
+        for i in key:
+            if i[:3] == "KEY":
+                key = i[3:]
+
+        reward = custom_rewards(carbon_emission + electricity_price,int(key))
         # ************** END ***************
-        
         return reward

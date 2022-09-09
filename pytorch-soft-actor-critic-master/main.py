@@ -46,6 +46,8 @@ parser.add_argument('--replay_size', type=int, default=1000000, metavar='N',
                     help='size of replay buffer (default: 10000000)')
 parser.add_argument('--cuda', action="store_true",
                     help='run on CUDA (default: False)')
+parser.add_argument('--reward_key', type=int)
+
 args = parser.parse_args()
 
 # Environment
@@ -54,9 +56,13 @@ args = parser.parse_args()
 class Constants:
     episodes = 3
     schema_path = 'citylearn-2022-starter-kit/data/citylearn_challenge_2022_phase_1/schema.json'
-    
+
+import os
+os.mkdir("KEY"+str(args.reward_key))
 env = CityLearnEnv(schema=Constants.schema_path)
-env.seed(args.seed)
+
+
+env.seed(123456)
 
 torch.manual_seed(args.seed)
 np.random.seed(args.seed)
@@ -68,7 +74,7 @@ agent = SAC(env.observation_space[0].shape[0], env.action_space, args)
 # writer = SummaryWriter('runs/{}_SAC_{}_{}_{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), args.env_name,
 #                                                              args.policy, "autotune" if args.automatic_entropy_tuning else ""))
 
-wandb.init(project="SAC",name="sac-{}-lr:{}_gamma:{}_tau:{}_alpha:{}".format(args.policy,args.lr,args.gamma,args.tau,args.alpha),entity="cleancity_challenge_rl")
+# wandb.init(project="REWARD_SWEEP",name="reward_{}_sac-{}-lr:{}_gamma:{}_tau:{}_alpha:{}".format(args.reward_key,args.policy,args.lr,args.gamma,args.tau,args.alpha),entity="cleancity_challenge_rl")
 # Memory
 memory = ReplayMemory(args.replay_size, args.seed)
 
@@ -95,13 +101,9 @@ for i_episode in itertools.count(1):
             # Number of updates per step in environment
             # for i in range(args.updates_per_step):
             #     # Update parameters of all the networks
-            #     critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+                critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+                wandb.log({'loss/critic_1': critic_1_loss,'loss/critic_2': critic_2_loss, 'loss/policy': policy_loss, 'loss/entropy_loss': ent_loss, 'entropy_temprature/alpha':alpha})
 
-            #     writer.add_scalar('loss/critic_1', critic_1_loss, updates)
-            #     writer.add_scalar('loss/critic_2', critic_2_loss, updates)
-            #     writer.add_scalar('loss/policy', policy_loss, updates)
-            #     writer.add_scalar('loss/entropy_loss', ent_loss, updates)
-            #     writer.add_scalar('entropy_temprature/alpha', alpha, updates)
                 updates += 1
         
         next_state, reward, done, _ = env.step(action) # Step
@@ -124,7 +126,7 @@ for i_episode in itertools.count(1):
     #     writer.add_scalar(f'reward/Building {k_}', k, i_episode)
 
     print("Episode: {}, total numsteps: {}, episode steps: {}, reward: {}".format(i_episode, total_numsteps, episode_steps, episode_reward))
-    wandb.log({"score":sum(episode_reward),"Building_Score_1":episode_reward[0],"Building_Score_2":episode_reward[1],"Building_Score_3":episode_reward[2],"Building_Score_4":episode_reward[3],"Building_Score_5":episode_reward[4]})
+    # wandb.log({"score":sum(episode_reward),"Building_Score_1":episode_reward[0],"Building_Score_2":episode_reward[1],"Building_Score_3":episode_reward[2],"Building_Score_4":episode_reward[3],"Building_Score_5":episode_reward[4]})
 
 env.close()
 

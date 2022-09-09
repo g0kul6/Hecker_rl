@@ -1,0 +1,21 @@
+
+Episode: 0 total_score: -25243.54739399498 Building_Score_1: -5535.902911467909 Building_Score_2: -5222.450279952 Building_Score_3: -4451.089777351956 Building_Score_4: -5139.496492435016 Building_Score_5: -4894.607932788123
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/train.py", line 58, in <module>
+    train_ddpg_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/train_util.py", line 55, in train_ddpg_mlp
+    next_state, reward, done, _ = env.step(action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 453, in step
+    building.apply_actions(**building_actions)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/building.py", line 615, in apply_actions
+    self.update_electrical_storage(electrical_storage_action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/building.py", line 687, in update_electrical_storage
+    self.electrical_storage.charge(energy)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/energy_model.py", line 804, in charge
+    self.efficiency = self.get_current_efficiency(energy)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/energy_model.py", line 855, in get_current_efficiency
+    idx = max(0, np.argmax(energy_normalized <= self.power_efficiency_curve[0]) - 1)
+  File "<__array_function__ internals>", line 180, in argmax
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 1216, in argmax
+    return _wrapfunc(a, 'argmax', axis=axis, out=out, **kwds)
+KeyboardInterrupt
