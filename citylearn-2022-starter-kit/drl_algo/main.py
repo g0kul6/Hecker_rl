@@ -32,17 +32,17 @@ parser.add_argument('--seed', type=int, default=123456, metavar='N',
                     help='random seed (default: 123456)')
 parser.add_argument('--batch_size', type=int, default=256, metavar='N',
                     help='batch size (default: 256)')
-parser.add_argument('--num_steps', type=int, default=1000001, metavar='N',
+parser.add_argument('--num_steps', type=int, default=500, metavar='N',
                     help='maximum number of steps (default: 1000000)')
 parser.add_argument('--hidden_size', type=int, default=256, metavar='N',
                     help='hidden size (default: 256)')
 parser.add_argument('--updates_per_step', type=int, default=1, metavar='N',
                     help='model updates per simulator step (default: 1)')
-parser.add_argument('--start_steps', type=int, default=10000, metavar='N',
+parser.add_argument('--start_steps', type=int, default=50, metavar='N',
                     help='Steps sampling random actions (default: 10000)')
 parser.add_argument('--target_update_interval', type=int, default=1, metavar='N',
                     help='Value target update per no. of updates per step (default: 1)')
-parser.add_argument('--replay_size', type=int, default=1000000, metavar='N',
+parser.add_argument('--replay_size', type=int, default=10000, metavar='N',
                     help='size of replay buffer (default: 10000000)')
 parser.add_argument('--cuda', action="store_true",
                     help='run on CUDA (default: False)')
@@ -85,10 +85,16 @@ updates = 0
 for i_episode in itertools.count(1):
     episode_reward = 0
     episode_steps = 0
+    total_critic1_loss = 0
+    total_critic2_loss = 0
+    total_ent_loss = 0
+    total_policy_loss =0
+    total_alpha = 0
+
     done = False
     state = env.reset()
 
-    for x_ in range(1000):
+    for x_ in range(args.num_steps):
         # print(f"EPISODE STEPS: {episode_steps}", end="\r")
         if args.start_steps > total_numsteps:
             action = [i.sample() for i in env.action_space]  # Sample random action
@@ -102,8 +108,11 @@ for i_episode in itertools.count(1):
             # for i in range(args.updates_per_step):
             #     # Update parameters of all the networks
                 critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
-                wandb.log({'loss/critic_1': critic_1_loss,'loss/critic_2': critic_2_loss, 'loss/policy': policy_loss, 'loss/entropy_loss': ent_loss, 'entropy_temprature/alpha':alpha})
-
+                total_critic1_loss+=critic_1_loss
+                total_critic2_loss+=critic_2_loss
+                total_ent_loss+=ent_loss
+                total_policy_loss+=policy_loss
+                total_alpha+=alpha
                 updates += 1
         
         next_state, reward, done, _ = env.step(action) # Step
@@ -119,14 +128,17 @@ for i_episode in itertools.count(1):
 
         state = next_state
 
-    if total_numsteps > args.num_steps:
+        
+
+    if total_numsteps > args.num_steps*1000:
         break
 
     # for k_, k in enumerate(episode_reward):
     #     writer.add_scalar(f'reward/Building {k_}', k, i_episode)
-
+    
     print("Episode: {}, total numsteps: {}, episode steps: {}, reward: {}".format(i_episode, total_numsteps, episode_steps, episode_reward))
     wandb.log({"score":sum(episode_reward),"Building_Score_1":episode_reward[0],"Building_Score_2":episode_reward[1],"Building_Score_3":episode_reward[2],"Building_Score_4":episode_reward[3],"Building_Score_5":episode_reward[4]})
+    wandb.log({'loss/critic_1': total_critic1_loss,'loss/critic_2': total_critic2_loss, 'loss/policy': total_policy_loss, 'loss/entropy_loss': total_ent_loss, 'entropy_temprature/alpha':total_alpha})
 
 env.close()
 

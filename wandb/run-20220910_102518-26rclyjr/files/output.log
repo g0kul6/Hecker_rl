@@ -1,0 +1,26 @@
+
+Episode: 1, total numsteps: 500, episode steps: 1.0, reward: [-328.66458177 -252.43580012 -246.99327016 -202.78599978 -223.83149921]
+Episode: 2, total numsteps: 1000, episode steps: 2.0, reward: [-343.74491063 -280.12314041 -246.40316155 -206.7235902  -221.24251131]
+Episode: 3, total numsteps: 1500, episode steps: 3.0, reward: [-376.99340421 -356.10125248 -309.45632765 -267.35213406 -283.85938947]
+Episode: 4, total numsteps: 2000, episode steps: 4.0, reward: [-475.05497325 -399.49240705 -423.33093568 -363.39991385 -404.6183887 ]
+Episode: 5, total numsteps: 2500, episode steps: 5.0, reward: [-479.2804603  -427.71291483 -402.02843963 -387.92451263 -418.51628235]
+Episode: 6, total numsteps: 3000, episode steps: 6.0, reward: [-467.5714405  -421.79425955 -393.09687965 -412.24021436 -387.59948936]
+Episode: 7, total numsteps: 3500, episode steps: 7.0, reward: [-459.15160795 -450.29859367 -362.73178637 -385.54175528 -414.66016615]
+Episode: 8, total numsteps: 4000, episode steps: 8.0, reward: [-454.59340596 -436.68843709 -330.13146727 -373.15027804 -407.07634345]
+Episode: 9, total numsteps: 4500, episode steps: 9.0, reward: [-443.76718078 -444.70989069 -336.88622576 -323.35683857 -404.07936771]
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 104, in <module>
+    critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 91, in update_parameters
+    self.policy_optim.step()
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/optimizer.py", line 113, in wrapper
+    return func(*args, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/adam.py", line 157, in step
+    adam(params_with_grad,
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/adam.py", line 213, in adam
+    func(params,
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/adam.py", line 262, in _single_tensor_adam
+    exp_avg.mul_(beta1).add_(grad, alpha=1 - beta1)
+KeyboardInterrupt

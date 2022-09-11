@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 103, in <module>
+    action = agent.select_action(state)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 47, in select_action
+    action, _, _ = self.policy.sample(state)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/models.py", line 179, in sample
+    normal = Normal(mean, std)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/distributions/normal.py", line 54, in __init__
+    super(Normal, self).__init__(batch_shape, validate_args=validate_args)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/distributions/distribution.py", line 55, in __init__
+    raise ValueError(
+ValueError: Expected parameter loc (Tensor of shape (1, 5)) of distribution Normal(loc: torch.Size([1, 5]), scale: torch.Size([1, 5])) to satisfy the constraint Real(), but found invalid values:
+tensor([[nan, nan, nan, nan, nan]], device='cuda:0', grad_fn=<AddmmBackward0>)

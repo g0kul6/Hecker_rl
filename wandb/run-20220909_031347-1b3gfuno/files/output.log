@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/pytorch-soft-actor-critic-master/main.py", line 127, in <module>
-    wandb.log({"score":sum(episode_reward),"Building_Score_1":sum(episode_reward[0]),"Building_Score_2":sum(episode_reward[1]),"Building_Score_3":sum(episode_reward[2]),"Building_Score_4":sum(episode_reward[3]),"Building_Score_5":sum(episode_reward[4])})
-TypeError: 'numpy.float64' object is not iterable
-Episode: 1, total numsteps: 1000, episode steps: 1000, reward: [-712.74934975 -644.15499731 -644.51549796 -555.28720649 -645.65949935]

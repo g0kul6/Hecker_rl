@@ -80,7 +80,7 @@ class TD3_MLP_CRITIC(nn.Module):
     def forward(self,s,a):
         q_value1 = self.network_critic_1(torch.cat([s, a], 1))
         q_value2 = self.network_critic_2(torch.cat([s, a], 1))
-        return q_value1
+        return q_value1, q_value2
 
 
 LOG_SIG_MAX = 2

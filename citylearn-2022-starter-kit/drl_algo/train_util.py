@@ -53,6 +53,8 @@ def train_ddpg_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episode
                 action = action.cpu().detach().numpy() + np.random.normal(0,0.1,size=action_dim).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
+            if steps == 500:
+                done = True
             steps = steps + 1
             building_1.append(reward[0])
             building_2.append(reward[1])
@@ -148,6 +150,8 @@ def train_td3_mlp(env,state_dim,action_dim,actor_lr,critic_lr,gamma,tau,episodes
                 action = action.cpu().detach().numpy() + np.random.normal(0,0.1,size=action_dim).clip(-1,1)
                 action = [([i]) for i in action]
             next_state, reward, done, _ = env.step(action)
+            if steps == 500:
+                 done = True
             steps = steps + 1
             building_1.append(reward[0])
             building_2.append(reward[1])

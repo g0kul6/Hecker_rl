@@ -1,0 +1,30 @@
+{
+    "os": "Linux-5.18.10-76051810-generic-x86_64-with-glibc2.35",
+    "python": "3.10.4",
+    "heartbeatAt": "2022-09-10T10:31:18.543904",
+    "startedAt": "2022-09-10T10:31:17.122805",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--cuda",
+        "--policy",
+        "Deterministic",
+        "--reward_key",
+        "0"
+    ],
+    "state": "running",
+    "program": "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py",
+    "codePath": "citylearn-2022-starter-kit/drl_algo/main.py",
+    "git": {
+        "remote": "git@github.com:g0kul6/Hecker_rl.git",
+        "commit": "e70d8c14e032527885003100c356bdc4c7aab16c"
+    },
+    "email": "frozenwolf2003.com@gmail.com",
+    "root": "/home/frozenwolf/Desktop/neurIPS/Hecker_rl",
+    "host": "pop-os",
+    "username": "frozenwolf",
+    "executable": "/home/frozenwolf/miniconda3/envs/citylearn/bin/python"
+}
