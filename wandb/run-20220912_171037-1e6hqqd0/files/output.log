@@ -1,0 +1,25 @@
+Episode: 0 total_score: -1724.2886314100504 Building_Score_1: -406.5027198859352 Building_Score_2: -352.84500619147843 Building_Score_3: -321.4494014636686 Building_Score_4: -312.51322736081386 Building_Score_5: -330.97827650815384
+Episode: 1 total_score: -1701.1249406447344 Building_Score_1: -394.09898944659784 Building_Score_2: -340.5350725226224 Building_Score_3: -341.284058689983 Building_Score_4: -304.95295051339497 Building_Score_5: -320.2538694721357
+Episode: 2 total_score: -1727.720877425747 Building_Score_1: -394.76593578388986 Building_Score_2: -357.0119212998388 Building_Score_3: -338.0718216566075 Building_Score_4: -309.91589980578516 Building_Score_5: -327.9552988796259
+Episode: 3 total_score: -1720.3085375340993 Building_Score_1: -405.15114615012493 Building_Score_2: -356.8975260302899 Building_Score_3: -331.791761092804 Building_Score_4: -308.88843696564527 Building_Score_5: -317.5796672952354
+Episode: 4 total_score: -1736.8234200204383 Building_Score_1: -402.02643449953644 Building_Score_2: -349.9065815101937 Building_Score_3: -350.6376792839592 Building_Score_4: -296.73744521511105 Building_Score_5: -337.51527951163797
+Episode: 5 total_score: -1755.64969476543 Building_Score_1: -419.16678314078064 Building_Score_2: -352.4067565185678 Building_Score_3: -337.99374631723606 Building_Score_4: -319.13398009168 Building_Score_5: -326.9484286971667
+Episode: 6 total_score: -1720.2081572859547 Building_Score_1: -416.19912371602777 Building_Score_2: -347.604483443625 Building_Score_3: -330.2797048350962 Building_Score_4: -302.39940645408694 Building_Score_5: -323.7254388371194
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/train.py", line 69, in <module>
+    train_td3_mlp(env=env,state_dim=env.observation_space[0].shape[0]*5,action_dim=env.action_space[0].shape[0]*5,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/train_util.py", line 152, in train_td3_mlp
+    next_state, reward, done, _ = env.step(action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 452, in step
+    building.apply_actions(**building_actions)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/building.py", line 612, in apply_actions
+    self.update_cooling(cooling_storage_action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/building.py", line 631, in update_cooling
+    self.cooling_storage.charge(energy)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/energy_model.py", line 671, in charge
+    super().charge(energy)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/energy_model.py", line 562, in charge
+    soc = min(self.soc_init + energy*self.efficiency, self.capacity) if energy >= 0 else max(0, self.soc_init + energy/self.efficiency)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/energy_model.py", line 24, in efficiency
+    @property
+KeyboardInterrupt

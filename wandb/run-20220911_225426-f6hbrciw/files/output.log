@@ -1,0 +1,72 @@
+Episode: 1, total numsteps: 500, episode steps: 500, reward: [ 9677.99477087 10126.62790376 11101.29021724  9970.75096444
+ 11720.77291531]
+Episode: 2, total numsteps: 1000, episode steps: 500, reward: [ 9208.72583776  9931.64946557 10931.59407415 10356.4781162
+ 11434.83839057]
+Episode: 3, total numsteps: 1500, episode steps: 500, reward: [ 9132.12080229 10158.51855936 11119.11455702  9893.4171986
+ 12581.07045269]
+Episode: 4, total numsteps: 2000, episode steps: 500, reward: [ 9132.12080229 11356.33534639 11918.9987297  11484.43100458
+ 11557.85067404]
+Episode: 5, total numsteps: 2500, episode steps: 500, reward: [ 9681.71755769 10997.69391688 12015.65855921 10829.83606873
+ 11277.8828078 ]
+Episode: 6, total numsteps: 3000, episode steps: 500, reward: [11570.95196105 10025.58011688 11584.10810373 11228.10654388
+ 12067.53311823]
+Episode: 7, total numsteps: 3500, episode steps: 500, reward: [11734.09582677  9003.88774126 11291.89420616 11244.44082586
+ 11860.14012404]
+Episode: 8, total numsteps: 4000, episode steps: 500, reward: [11457.79309738  8692.87324137 11616.93343959 10533.87929382
+ 12396.4412137 ]
+Episode: 9, total numsteps: 4500, episode steps: 500, reward: [11690.17735695  8460.2662863  11617.74760995 10293.28961602
+ 12517.92858179]
+Episode: 10, total numsteps: 5000, episode steps: 500, reward: [11636.89898326  8646.13699003 10904.05658073  9719.66128769
+ 12014.61928597]
+Episode: 11, total numsteps: 5500, episode steps: 500, reward: [11166.59118074  8685.30559611 11359.8653911   9741.98196461
+ 11957.53580617]
+Episode: 12, total numsteps: 6000, episode steps: 500, reward: [10800.22850566  8578.36646761 11802.36706975 10504.37813291
+ 11567.23660905]
+Episode: 13, total numsteps: 6500, episode steps: 500, reward: [10819.91178959  8897.17162756 11241.81436345 10605.23971898
+ 11699.03670409]
+Episode: 14, total numsteps: 7000, episode steps: 500, reward: [10912.44795277  9544.89738776 11612.42677173 10336.38940429
+ 12121.21250854]
+Episode: 15, total numsteps: 7500, episode steps: 500, reward: [11520.10815834  9896.13208979 10925.02001715 10817.68475517
+ 12425.76066381]
+Episode: 16, total numsteps: 8000, episode steps: 500, reward: [11133.95228901 10311.86475886 11692.0938027  10807.60312871
+ 12829.92718156]
+Episode: 17, total numsteps: 8500, episode steps: 500, reward: [11162.23942427 10576.12596436 11836.79785396 10885.64329657
+ 13434.87744148]
+Episode: 18, total numsteps: 9000, episode steps: 500, reward: [11000.5957677  10448.95651194 11430.71786291 10956.73099931
+ 14178.80099586]
+Episode: 19, total numsteps: 9500, episode steps: 500, reward: [10434.40797302 10693.59433939 11616.7492035  11268.6050587
+ 13958.13322378]
+Episode: 20, total numsteps: 10000, episode steps: 500, reward: [11173.14267848 10608.22245519 11561.53639768 11865.95329479
+ 14295.22192812]
+Episode: 21, total numsteps: 10500, episode steps: 500, reward: [10905.23029822 10497.31576363 11345.32497415 11994.38382614
+ 14157.59956232]
+Episode: 22, total numsteps: 11000, episode steps: 500, reward: [11006.95353255 10539.14412146 11696.69970502 11221.18296571
+ 13947.45215121]
+Episode: 23, total numsteps: 11500, episode steps: 500, reward: [11058.34244804 10801.55541567 11825.43144979 11961.78188418
+ 13889.54084696]
+Episode: 24, total numsteps: 12000, episode steps: 500, reward: [11117.14895163 10429.70066589 11396.27663798 12546.14053288
+ 13761.76003651]
+Episode: 25, total numsteps: 12500, episode steps: 500, reward: [11355.33595115 10462.48946684 11915.13509618 11583.75433857
+ 13431.80554523]
+Episode: 26, total numsteps: 13000, episode steps: 500, reward: [11509.96154598 10706.81790137 11552.53708674 11869.03941784
+ 13248.67982493]
+Episode: 27, total numsteps: 13500, episode steps: 500, reward: [11301.01705674 10211.69017093 11718.02871353 12195.45823111
+ 13062.1681619 ]
+Episode: 28, total numsteps: 14000, episode steps: 500, reward: [11155.04267064 10382.45895307 11981.50115508 11489.01159761
+ 12619.92447871]
+Episode: 29, total numsteps: 14500, episode steps: 500, reward: [11045.95874536 10147.3564354  12084.79215418 11581.06267023
+ 12426.17363023]
+Episode: 30, total numsteps: 15000, episode steps: 500, reward: [11186.83865799  9937.28019323 11649.10325978 12070.40475704
+ 12811.93757607]
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 103, in <module>
+    action = agent.select_action(state)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 47, in select_action
+    action, _, _ = self.policy.sample(state)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/models.py", line 180, in sample
+    x_t = normal.rsample()  # for reparameterization trick (mean + std * N(0,1))
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/distributions/normal.py", line 72, in rsample
+    eps = _standard_normal(shape, dtype=self.loc.dtype, device=self.loc.device)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/distributions/utils.py", line 48, in _standard_normal
+    return torch.empty(shape, dtype=dtype, device=device).normal_()
+KeyboardInterrupt

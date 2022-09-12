@@ -1,0 +1,16 @@
+Episode: 1, total numsteps: 500, episode steps: 500, reward: [-331.33910943 -246.48160552 -245.32484146 -189.9682925  -226.96885774], metrics: {'price_cost': 1.0985700413099202, 'emmision_cost': 1.2729174312192055}
+Saving models to checkpoint/sac_checkpoint_Gaussian_0
+Episode: 2, total numsteps: 1000, episode steps: 500, reward: [-272.07259322 -233.21087344 -216.43244576 -220.249959   -191.35927315], metrics: {'price_cost': 1.085895429506589, 'emmision_cost': 1.1312046222917578}
+Saving models to checkpoint/sac_checkpoint_Gaussian_0
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 110, in <module>
+    critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 78, in update_parameters
+    self.critic_optim.step()
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/optimizer.py", line 113, in wrapper
+    return func(*args, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/optim/adam.py", line 149, in step
+    exp_avgs.append(state['exp_avg'])
+KeyboardInterrupt

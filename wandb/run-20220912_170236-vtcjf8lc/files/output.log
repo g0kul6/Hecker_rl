@@ -1,0 +1,14 @@
+Episode: 1, total numsteps: 500, episode steps: 500, reward: [10226.79757415  9605.68301823 11589.50030689 10435.64849252
+ 11523.45909523]
+Saving models to checkpoints/sac_checkpoint_Gaussian_1
+Episode: 2, total numsteps: 1000, episode steps: 500, reward: [ 9778.66174319 10039.13838583 12246.83296735 10445.25459274
+ 12030.32815236]
+Saving models to checkpoints/sac_checkpoint_Gaussian_1
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 110, in <module>
+    critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 108, in update_parameters
+    soft_update(self.critic_target, self.critic, self.tau)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/utils.py", line 25, in soft_update
+    target_param.data.copy_(target_param.data * (1.0 - tau) + param.data * tau)
+KeyboardInterrupt

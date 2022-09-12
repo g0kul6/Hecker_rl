@@ -1,0 +1,19 @@
+
+Episode: 1, total numsteps: 500, episode steps: 500, reward: [inf inf inf inf inf]
+Episode: 2, total numsteps: 1000, episode steps: 500, reward: [inf inf inf inf inf]
+Episode: 3, total numsteps: 1500, episode steps: 500, reward: [inf inf inf inf inf]
+Episode: 4, total numsteps: 2000, episode steps: 500, reward: [inf inf inf inf inf]
+Episode: 5, total numsteps: 2500, episode steps: 500, reward: [inf inf inf inf inf]
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/main.py", line 110, in <module>
+    critic_1_loss, critic_2_loss, policy_loss, ent_loss, alpha = agent.update_parameters(memory, args.batch_size, updates)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/sac.py", line 54, in update_parameters
+    state_batch, action_batch, reward_batch, next_state_batch, mask_batch = memory.sample(batch_size=batch_size)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/citylearn-2022-starter-kit/drl_algo/replay_memory.py", line 19, in sample
+    state, action, reward, next_state, done = map(np.stack, zip(*batch))
+  File "<__array_function__ internals>", line 180, in stack
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/numpy/core/shape_base.py", line 420, in stack
+    arrays = [asanyarray(arr) for arr in arrays]
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/numpy/core/shape_base.py", line 420, in <listcomp>
+    arrays = [asanyarray(arr) for arr in arrays]
+KeyboardInterrupt

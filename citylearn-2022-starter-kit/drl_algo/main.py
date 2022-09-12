@@ -136,9 +136,15 @@ for i_episode in itertools.count(1):
     # for k_, k in enumerate(episode_reward):
     #     writer.add_scalar(f'reward/Building {k_}', k, i_episode)
     
-    print("Episode: {}, total numsteps: {}, episode steps: {}, reward: {}".format(i_episode, total_numsteps, episode_steps, episode_reward))
-    wandb.log({"score":sum(episode_reward),"Building_Score_1":episode_reward[0],"Building_Score_2":episode_reward[1],"Building_Score_3":episode_reward[2],"Building_Score_4":episode_reward[3],"Building_Score_5":episode_reward[4]})
+    metrics_t = env.evaluate()
+    
+    metrics = {"price_cost": metrics_t[0], "emmision_cost": metrics_t[1]}
+    print("Episode: {}, total numsteps: {}, episode steps: {}, reward: {}, Price cost: {}, Emmision cost:{}, metrics: {}".format(i_episode, total_numsteps, episode_steps, episode_reward, metrics_t[0], metrics_t[1], sum(metrics_t)))
+
+    wandb.log({"score":sum(episode_reward),"Building_Score_1":episode_reward[0],"Building_Score_2":episode_reward[1],"Building_Score_3":episode_reward[2],"Building_Score_4":episode_reward[3],"Building_Score_5":episode_reward[4], "metric":sum(metrics_t), "Price cost":metrics_t[0], "Emmision cost":metrics_t[1]})
     wandb.log({'loss/critic_1': total_critic1_loss,'loss/critic_2': total_critic2_loss, 'loss/policy': total_policy_loss, 'loss/entropy_loss': total_ent_loss, 'entropy_temprature/alpha':total_alpha})
+    
+    agent.save_checkpoint(args.policy, str(args.reward_key))
 
 env.close()
 

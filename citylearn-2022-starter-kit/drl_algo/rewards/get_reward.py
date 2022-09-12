@@ -4,7 +4,7 @@ import os
 ###########################################################################
 #####                Specify your reward function here                #####
 ###########################################################################
-
+E_CONST = np.e**-4
 key = os.listdir()
 for i in key:
     if i[:3] == "KEY":
@@ -16,7 +16,7 @@ class keys_store:
 
 def custom_rewards(x, which=0):
     func = {0: lambda x: x*-1,
-            1: lambda x: 1/x,
+            1: lambda x: 1/(x+E_CONST),
             2: lambda x: 1/(1 + np.exp(x)),
             # 3: lambda x: np.asarray([-math.log(i) if i>0 else math.log(-i) for i in x])
             }
