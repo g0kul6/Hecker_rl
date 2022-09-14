@@ -1,0 +1,24 @@
+{
+    "os": "Linux-5.18.10-76051810-generic-x86_64-with-glibc2.35",
+    "python": "3.10.4",
+    "heartbeatAt": "2022-09-14T13:37:46.634940",
+    "startedAt": "2022-09-14T13:37:44.344130",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/marla.py",
+    "codePath": "MARLA/marla.py",
+    "git": {
+        "remote": "git@github.com:g0kul6/Hecker_rl.git",
+        "commit": "8967d8f6bd44662e0e67d3f795828a3c0156d81b"
+    },
+    "email": "frozenwolf2003.com@gmail.com",
+    "root": "/home/frozenwolf/Desktop/neurIPS/Hecker_rl",
+    "host": "pop-os",
+    "username": "frozenwolf",
+    "executable": "/home/frozenwolf/miniconda3/envs/citylearn/bin/python"
+}

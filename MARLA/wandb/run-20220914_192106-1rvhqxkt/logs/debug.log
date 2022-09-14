@@ -1,0 +1,23 @@
+2022-09-14 19:21:06,022 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Configure stats pid to 32895
+2022-09-14 19:21:06,023 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from /home/frozenwolf/.config/wandb/settings
+2022-09-14 19:21:06,023 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/settings
+2022-09-14 19:21:06,024 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_require_service': 'True'}
+2022-09-14 19:21:06,024 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'MARLA/marla.py', 'program': '/home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/marla.py'}
+2022-09-14 19:21:06,025 INFO    MainThread:32895 [wandb_init.py:_log_setup():461] Logging user logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/run-20220914_192106-1rvhqxkt/logs/debug.log
+2022-09-14 19:21:06,026 INFO    MainThread:32895 [wandb_init.py:_log_setup():462] Logging internal logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/run-20220914_192106-1rvhqxkt/logs/debug-internal.log
+2022-09-14 19:21:06,026 INFO    MainThread:32895 [wandb_init.py:init():495] calling init triggers
+2022-09-14 19:21:06,027 INFO    MainThread:32895 [wandb_init.py:init():498] wandb.init called with sweep_config: {}
+config: {}
+2022-09-14 19:21:06,027 INFO    MainThread:32895 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-09-14 19:21:07,474 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Configure stats pid to 32895
+2022-09-14 19:21:07,475 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from /home/frozenwolf/.config/wandb/settings
+2022-09-14 19:21:07,475 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/settings
+2022-09-14 19:21:07,476 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_require_service': 'True'}
+2022-09-14 19:21:07,477 INFO    MainThread:32895 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'MARLA/marla.py', 'program': '/home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/marla.py'}
+2022-09-14 19:21:07,477 INFO    MainThread:32895 [wandb_init.py:_log_setup():461] Logging user logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/run-20220914_192107-1jrkg1dc/logs/debug.log
+2022-09-14 19:21:07,478 INFO    MainThread:32895 [wandb_init.py:_log_setup():462] Logging internal logs to /home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/wandb/run-20220914_192107-1jrkg1dc/logs/debug-internal.log
+2022-09-14 19:21:07,479 INFO    MainThread:32895 [wandb_init.py:init():495] calling init triggers
+2022-09-14 19:21:07,479 INFO    MainThread:32895 [wandb_init.py:init():498] wandb.init called with sweep_config: {}
+config: {}
+2022-09-14 19:21:07,480 INFO    MainThread:32895 [wandb_init.py:init():543] wandb.init() called when a run is still active
+2022-09-14 19:22:00,749 WARNING MsgRouterThr:32895 [router.py:message_loop():76] message_loop has been closed

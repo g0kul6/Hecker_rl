@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/marla.py", line 302, in <module>
+    score, actor_loss, critic_loss, building_1, building_2, building_3, building_4, building_5, metrics_t = marla_env.train_step(env, total_steps)
+  File "/home/frozenwolf/Desktop/neurIPS/Hecker_rl/MARLA/marla.py", line 293, in train_step
+    return score, actor_loss, critic_loss, building_1, building_2, building_3, building_4, building_5, metrics_t
+UnboundLocalError: local variable 'actor_loss' referenced before assignment
