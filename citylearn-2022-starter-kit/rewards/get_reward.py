@@ -46,10 +46,15 @@ def get_reward(electricity_consumption: List[float], carbon_emission: List[float
 
         # *********** BEGIN EDIT ***********
         # Replace with custom reward calculation
-        carbon_emission = np.array(carbon_emission).clip(min=0)
-        electricity_price = np.array(electricity_price).clip(min=0)
-
+        carbon_emission = np.abs(np.array(carbon_emission))
+        electricity_price = np.abs(np.array(electricity_price))
+        electricity_consumption = np.abs(np.asarray(electricity_consumption))
 
         reward = custom_rewards(carbon_emission + electricity_price,int(keys_store.reward_key))
+
+        # print("CARBON EMISSION: ",carbon_emission)
+        # print("ELECTRICITY PRICE: ",electricity_price)
+        # print("ELECTRICITY CONSUMPTION: ",electricity_consumption)
+        # print("REWARD: ",reward, end="\n\n")
         # ************** END ***************
         return reward

@@ -14,8 +14,8 @@ class DDPG_MLP_ACTOR(nn.Module):
         self.network_actor = nn.Sequential(
             nn.Linear(state_dim,hidden_dim),
             nn.ReLU(),
-            nn.Linear(hidden_dim,hidden_dim),
-            nn.ReLU(),
+            # nn.Linear(hidden_dim,hidden_dim),
+            # nn.ReLU(),
             nn.Linear(hidden_dim,action_dim),
             nn.Tanh()
         )
