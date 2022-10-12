@@ -1,0 +1,17 @@
+{
+    "os": "Linux-5.18.10-76051810-generic-x86_64-with-glibc2.35",
+    "python": "3.10.4",
+    "heartbeatAt": "2022-09-30T12:52:50.607657",
+    "startedAt": "2022-09-30T12:52:36.549694",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "<python with no main file>",
+    "host": "pop-os",
+    "username": "frozenwolf",
+    "executable": "/home/frozenwolf/miniconda3/envs/citylearn/bin/python"
+}
