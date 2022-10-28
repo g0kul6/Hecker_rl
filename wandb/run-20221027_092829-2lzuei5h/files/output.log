@@ -1,0 +1,17 @@
+CARBON EMISSION:  [0.13390473828931687, 0.21563198897421995, 0.023622879214806616, 0.8737542677592152, 0.0811582800914279]
+ELECTRICITY PRICE:  [0.18725666666666677, 0.30154666666666663, 0.033034989465991815, 1.2218859000556996, 0.11349433333333334]
+ELECTRICITY CONSUMPTION:  [0.8511666666666671, 1.3706666666666665, 0.1501590430272355, 5.554026818434998, 0.5158833333333334]
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/train.py", line 66, in <module>
+    train_ddpg_mlp(env,env.observation_space[0].shape[0]*5, 3,3,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/drl_algo/train_util.py", line 113, in train_ddpg_mlp
+    next_state, reward, done, _ = env.step(action)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 455, in step
+    reward = self.get_reward()
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/citylearn/citylearn.py", line 474, in get_reward
+    reward = self.reward_function.calculate()
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/rewards/user_reward.py", line 42, in calculate
+    return get_reward(self.electricity_consumption,
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/rewards/get_reward.py", line 61, in get_reward
+    reward = custom_rewards(carbon_emission + electricity_price,int(keys_store.reward_key))
+ValueError: invalid literal for int() with base 10: 'None'

@@ -1,0 +1,22 @@
+
+Episode: 0 total_score: -1767.134633339192 Building_Score_1: -405.9221239000194 Building_Score_2: -349.6523464588481 Building_Score_3: -360.8078444957762 Building_Score_4: -310.71884248947885 Building_Score_5: -340.033475995071 Price cost: 1.2894591100891482 Emission cost 1.8222566861313134 metrics 3.1117157962204613
+Traceback (most recent call last):
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/train.py", line 66, in <module>
+    train_ddpg_mlp(env,5, 28*3,3,actor_lr=args.actor_lr,critic_lr=args.critic_lr,tau=args.tau,
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/drl_algo/train_util.py", line 153, in train_ddpg_mlp
+    action_, Q_ = get_generalized_actions(observation_total_dim, action_dim, next_states, actor_target, critic_target)
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/drl_algo/train_util.py", line 42, in get_generalized_actions
+    critic_ = critic_m(observation_space[:,i:i+n_agents].view(-1, n_agents*28), action).view(-1,1,1)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/frozenwolf/Desktop/neurIPS/partially_generalized_ddpg/citylearn-2022-starter-kit/drl_algo/models.py", line 40, in forward
+    q_value = self.network_critic(torch.cat([s, a], 1))
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/frozenwolf/miniconda3/envs/citylearn/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
