@@ -3,7 +3,7 @@ import random
 import numpy as np
 from collections import namedtuple, deque
 
-Transition_PPO = namedtuple('Transition', ('state', 'next_state', 'action', 'reward', 'done'))
+Transition_PPO = namedtuple('Transition', ('state', 'action', 'reward', 'logprob' ,'done'))
 class PPO_Memory(object):
     def __init__(self,capacity):
         """
